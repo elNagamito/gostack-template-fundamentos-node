@@ -14,8 +14,8 @@ interface Totals {
 }
 
 interface Transactions {
-  transaction: Request[];
-  totals: Totals;
+  transactions: Request[];
+  balance: Totals;
 }
 
 class ShowTransactionService {
