@@ -7,22 +7,28 @@ interface Request {
   type: 'income' | 'outcome';
 }
 
-class CreateTransactionService {
+interface Totals {
+  income: number;
+  outcome: number;
+  total: number;
+}
+
+interface Transactions {
+  transaction: Request[];
+  totals: Totals;
+}
+
+class ShowTransactionService {
   private transactionsRepository: TransactionsRepository;
 
   constructor(transactionsRepository: TransactionsRepository) {
     this.transactionsRepository = transactionsRepository;
   }
 
-  public execute({ title, value, type }: Request): Transaction {
-    const transaction = this.transactionsRepository.create({
-      title,
-      value,
-      type,
-    });
-
-    return transaction;
+  public execute(): Transactions {
+    const transactions = this.transactionsRepository.all();
+    return transactions;
   }
 }
 
-export default CreateTransactionService;
+export default ShowTransactionService;
